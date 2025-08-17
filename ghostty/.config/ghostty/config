@@ -1,0 +1,19 @@
+# theme = Desert
+background-opacity = 0.8
+font-family = "JetBrains Mono"
+font-size = 14
+cursor-style = block
+cursor-style-blink = false
+cursor-invert-fg-bg = true
+mouse-hide-while-typing = true
+
+window-subtitle = working-directory
+confirm-close-surface = true
+window-decoration = client
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-save-state = always
+
+auto-update = download
+auto-update-channel = stable
