@@ -1,165 +1,198 @@
 * {
-    font-size:15px;
-    font-family: "CodeNewRoman Nerd Font Propo";
+    all: unset;
+    font-size: 16px;
+    font-family: "CodeNewRoman Nerd Font Propo", "JetBrains Mono", "Fira Code", monospace;
 }
-window#waybar{
-    all:unset;
+
+window#waybar {
+    color: #cdd6f4;
+    border-radius: 0px;
 }
-.modules-left {
-    padding:7px;
-    margin:10px 0 5px 10px;
-    border-radius:10px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
-}
-.modules-center {
-    padding:7px;
-    margin:10px 0 5px 0;
-    border-radius:10px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
-}
+
+.modules-left,
+.modules-center,
 .modules-right {
-    padding:7px;
-    margin: 10px 10px 5px 0;
-    border-radius:10px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+    padding: 0 12px;
+    border-radius: 12px;
+    background: rgba(49, 50, 68, 0.6);
 }
+
+.modules-left {
+    margin-left: 8px;
+}
+
+.modules-right {
+    margin-right: 8px;
+}
+
 tooltip {
-    background:@background;
-    color: @color7;
+    background: rgba(30, 30, 46, 0.95);
+    color: #cdd6f4;
+    border-radius: 12px;
+    border: 1px solid rgba(108, 112, 134, 0.3);
+    padding: 8px;
 }
-#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
-    transition: all .3s ease;
-    color:@color9;
-}
-#custom-notification {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
-}
-#clock{
-    padding: 0px 5px;
-    color:@color7;
-    transition: all .3s ease;
-}
-#custom-pacman{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
-}
-#workspaces {
-    padding: 0px 5px;
-}
+/* Рабочие столы */
 #workspaces button {
-    all:unset;
-    padding: 0px 5px;
-    color: alpha(@color9,.4);
-    transition: all .2s ease;
+    padding: 0 8px;
+    color: rgba(205, 214, 244, 0.6);
+    transition: all 0.2s ease;
+    border-radius: 8px;
 }
+
 #workspaces button:hover {
-    color:rgba(0,0,0,0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
+    color: #f5c2e7;
+    background: rgba(245, 194, 231, 0.1);
 }
+
 #workspaces button.active {
-    color: @color9;
-    border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
 }
-#workspaces button.empty {
-    color: rgba(0,0,0,0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
-}
-#workspaces button.empty:hover {
-    color: rgba(0,0,0,0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
-}
-#workspaces button.empty.active {
-    color: @color9;
-    border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
-}
-#bluetooth{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
+#workspaces button.urgent {
+    color: #f38ba8;
+    background: rgba(243, 139, 168, 0.1);
 }
-#network{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
+/* Иконки модулей */
+#custom-launcher,
+#cpu,
+#memory,
+#clock,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#tray,
+#custom-power {
+    padding: 0 6px;
+    transition: all 0.2s ease;
+    border-radius: 6px;
 }
-#battery{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
-
+#custom-launcher {
+    color: #89b4fa;
+    font-size: 16px;
 }
+
+#custom-launcher:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#cpu {
+    color: #94e2d5;
+}
+
+#cpu:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#memory {
+    color: #cba6f7;
+}
+
+#memory:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#clock {
+    color: #f5c2e7;
+    font-weight: bold;
+}
+
+#clock:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#pulseaudio {
+    color: #a6e3a1;
+}
+
+#pulseaudio:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#pulseaudio.muted {
+    color: #f38ba8;
+}
+
+#network {
+    color: #f9e2af;
+}
+
+#network:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#network.disconnected {
+    color: #f38ba8;
+}
+
+#bluetooth {
+    color: #89b4fa;
+}
+
+#bluetooth:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#bluetooth.disabled {
+    color: #f38ba8;
+}
+
+#battery {
+    color: #a6e3a1;
+}
+
+#battery:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
 #battery.charging {
-    color: #26A65B;
+    color: #a6e3a1;
 }
 
 #battery.warning:not(.charging) {
-    color: #ffbe61;
+    color: #f9e2af;
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-#group-expand{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-}
-#custom-expand{
-    padding: 0px 5px;
-    color:alpha(@foreground,.2);
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .7);
-    transition: all .3s ease; 
-}
-#custom-expand:hover{
-    color:rgba(255,255,255,.2);
-    text-shadow: 0px 0px 2px rgba(255, 255, 255, .5);
-}
-#custom-colorpicker{
-    padding: 0px 5px;
-}
-#cpu,#memory,#temperature{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-    color:@color7;
-
-}
-#custom-endpoint{
-    color:transparent;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
-
-}
-#tray{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-
-}
-#tray menu * {
-    padding: 0px 5px;
-    transition: all .3s ease; 
+    color: #f38ba8;
+    animation: blink 1s infinite alternate;
 }
 
-#tray menu separator {
-    padding: 0px 5px;
-    transition: all .3s ease; 
+#tray {
+    color: #bac2de;
+}
+
+#tray:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#custom-power {
+    color: #f38ba8;
+    font-size: 16px;
+}
+
+#custom-power:hover {
+    color: #e64553;
+    background: rgba(230, 69, 83, 0.1);
+}
+
+/* Анимации */
+@keyframes blink {
+    to {
+        opacity: 0.6;
+    }
 }

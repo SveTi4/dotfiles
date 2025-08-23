@@ -1,60 +1,109 @@
 {
-	"layer": "top",
-	"height": 60,
-        "position": "top",
-        "reload_style_on_change": true,
-        "modules-left": ["clock","tray"],
-        "modules-center": [],
-        "modules-right": ["bluetooth","network","battery"],
-
-        "clock": {
-            "format": "{:%I:%M:%S %p} ",
-            "interval": 1,   
-            "tooltip-format": "<tt>{calendar}</tt>",
-            "calendar": {
-                "format": {
-                    "today": "<span color='#fAfBfC'><b>{}</b></span>"
-                }
-            },
-            "actions": {
-                "on-click-right": "shift_down",
-                "on-click": "shift_up"
-            }
+    "layer": "top",
+    "height": 36,
+    "position": "top",
+    "margin-top": 6,
+    "margin-bottom": 0,
+    "margin-left": 6,
+    "margin-right": 6,
+    "modules-left": ["custom/launcher", "custom/workspaces", "cpu", "memory"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "tray", "custom/power"],
+    
+    // Стиль
+    "css": "style.css",
+    
+    // Модули
+    "custom/launcher": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "fuzzel",
+    },
+    
+    "custom/workspaces": {
+        "format": "{}",  // Будем обновлять через скрипт
+        "exec": "~/.config/waybar/scripts/workspaces.sh",
+        "return-type": "json",
+        "interval": 1
+    },
+    
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "interval": 2,
+        "tooltip": true,
+        "on-click": "kitty htop"
+    },
+    
+    "memory": {
+        "format": "󰍛 {used:0.1f}G",
+        "interval": 5,
+        "tooltip": true,
+        "on-click": "kitty htop"
+    },
+    
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%d/%m/%Y}",
+        "interval": 1,
+        "tooltip": false,
+    },
+    
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " 0%",
+        "format-icons": {
+            "default": ["", "", ""]
         },
-
-"tray": {
-            "icon-size": 14,
-            "spacing": 10
+        "on-click": "pamixer -t",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5
+    },
+    
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󱘖 Offline",
+        "format-alt": "󰩟 {ipaddr}",
+        "tooltip-format": " {ifname}\n {essid}\n󰩟 {ipaddr}",
+        "interval": 5,
+        "on-click-right": "nm-connection-editor"
+    },
+    
+    "bluetooth": {
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-disabled": " Off",
+        "tooltip-format": "Bluetooth\n{status}",
+        "tooltip-format-connected": "Bluetooth\nConnected: {num_connections}\n{device_enumerate}",
+        "on-click": "blueman-manager",
+        "on-click-right": "bluetoothctl power toggle"
+    },
+    
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
         },
-
-	"bluetooth": {
-            "format-on": "󰂯",
-            "format-off": "BT-off",
-            "format-disabled": "󰂲",
-            "format-connected-battery": "{device_battery_percentage}% 󰂯",
-            "format-alt": "{device_alias} 󰂯",
-            "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-            "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
-            "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-            "on-click-right": "blueman-manager",
-        },
- 
-        "battery": {
-            "interval":30,
-            "states": {
-                "good": 95,
-                "warning": 30,
-                "critical": 20
-            },
-            "format": "{capacity}% {icon}",
-            "format-charging": "{capacity}% 󰂄",
-            "format-plugged": "{capacity}% 󰂄 ",
-            "format-alt": "{time} {icon}",
-            "format-icons": [
-                "󰁻", "󰁼","󰁾","󰂀","󰂂","󰁹"
-            ],
-        },
-
-
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰁹 {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "interval": 10
+    },
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+    
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout --protocol layer-shell",
+        "on-click-right": "systemctl poweroff"
+    }
 }
