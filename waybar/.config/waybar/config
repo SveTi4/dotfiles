@@ -6,9 +6,10 @@
     "margin-bottom": 0,
     "margin-left": 6,
     "margin-right": 6,
-    "modules-left": ["custom/launcher", "custom/workspaces", "cpu", "memory"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "tray", "custom/power"],
+    "reload_style_on_change": true,
+    "modules-left": ["custom/launcher", "cpu", "memory", "niri/window"],
+    "modules-center": ["clock", "niri/workspaces"],
+    "modules-right": ["niri/language", "pulseaudio", "network", "bluetooth", "battery", "tray", "custom/power"],
     
     // Стиль
     "css": "style.css",
@@ -20,6 +21,44 @@
         "on-click": "fuzzel",
     },
     
+    "niri/window": {
+    	"format": "{title}",
+    	"rewrite": {
+            // Обработка браузера Firefox
+            "(.*) — Mozilla Firefox": "󰖟 $1",
+            "(.*) - Поиск в Google — Mozilla Firefox": "󰖟 $1",
+            
+            // Обработка текстового редактора
+            "(.*) - Text Editor": " $1",
+           
+            // Обработка виртуальных машин
+            "(.*) on QEMU/KVM": " $1",
+            
+            // Обработка man-страниц
+            "^man (.*)$": " $1",
+            
+            // Общее правило для длинных заголовков (оставляем первые 3-4 слова)
+            "^((?:\\w+\\s+){3}\\w+).*$": "$1..."
+        },
+        "max-length": 40, // Ограничение длины заголовка
+        "ellipsis": true // Добавление многоточия при обрезке
+    },
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+	    "focused": "󰪥",
+	    "urgent": "󰵚",
+            "default": ""
+        },
+        "expand": true
+    },
+    
+    "niri/language": {
+        "format": "{shortDescription}",
+    },
+
     "custom/workspaces": {
         "format": "{}",  // Будем обновлять через скрипт
         "exec": "~/.config/waybar/scripts/workspaces.sh",
@@ -50,19 +89,20 @@
     
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": " 0%",
+        "format-muted": " ",
         "format-icons": {
             "default": ["", "", ""]
         },
         "on-click": "pamixer -t",
         "on-click-right": "pavucontrol",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5
+        "on-scroll-up": "pamixer -i 1",
+        "on-scroll-down": "pamixer -d 1",
+        "scroll-step": 1,
     },
     
     "network": {
-        "format-wifi": " {essid}",
+        "format-wifi": "{icon}{essid}",
+	"format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
         "format-ethernet": "󰈀 {ifname}",
         "format-disconnected": "󱘖 Offline",
         "format-alt": "󰩟 {ipaddr}",
@@ -97,7 +137,12 @@
     
     "tray": {
         "icon-size": 16,
-        "spacing": 8
+        "spacing": 8,
+	"swap-icon-label": true,
+        "icons": {
+            "notifier": "󰚰",
+            "telegram-desktop": "󰁹"
+        }
     },
     
     "custom/power": {

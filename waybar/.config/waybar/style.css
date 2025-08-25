@@ -1,3 +1,4 @@
+/* Общие */
 * {
     all: unset;
     font-size: 16px;
@@ -12,7 +13,7 @@ window#waybar {
 .modules-left,
 .modules-center,
 .modules-right {
-    padding: 0 12px;
+    padding: 0;
     border-radius: 12px;
     background: rgba(49, 50, 68, 0.6);
 }
@@ -26,7 +27,7 @@ window#waybar {
 }
 
 tooltip {
-    background: rgba(30, 30, 46, 0.95);
+    background: rgba(30, 30, 46, 0.75);
     color: #cdd6f4;
     border-radius: 12px;
     border: 1px solid rgba(108, 112, 134, 0.3);
@@ -35,12 +36,15 @@ tooltip {
 
 /* Рабочие столы */
 #workspaces button {
-    padding: 0 8px;
+    padding: 0px 4px;
     color: rgba(205, 214, 244, 0.6);
     transition: all 0.2s ease;
-    border-radius: 8px;
+    border-radius: 0px;
 }
-
+#workspaces button.empty {
+    border-radius: 0px 12px 12px 0px;
+    padding: 8px 12px 8px 8px;
+}
 #workspaces button:hover {
     color: #f5c2e7;
     background: rgba(245, 194, 231, 0.1);
@@ -52,8 +56,8 @@ tooltip {
 }
 
 #workspaces button.urgent {
-    color: #f38ba8;
-    background: rgba(243, 139, 168, 0.1);
+    color: #a6e3a1;
+    background: rgba(166, 227, 161, 0.1);
 }
 
 /* Иконки модулей */
@@ -62,12 +66,14 @@ tooltip {
 #memory,
 #clock,
 #pulseaudio,
+#pulseaudio-slider,
 #network,
 #bluetooth,
 #battery,
 #tray,
 #custom-power {
-    padding: 0 6px;
+    padding: 4px 6px;
+    margin: 4px;
     transition: all 0.2s ease;
     border-radius: 6px;
 }
@@ -75,6 +81,9 @@ tooltip {
 #custom-launcher {
     color: #89b4fa;
     font-size: 16px;
+    border-radius: 12px 0px 0px 12px;
+    margin: 0px;
+    padding: 8px 8px 8px 12px;
 }
 
 #custom-launcher:hover {
@@ -103,11 +112,21 @@ tooltip {
 #clock {
     color: #f5c2e7;
     font-weight: bold;
+    margin: 0;
+    padding: 8px 8px 8px 12px;
+    border-radius: 12px 0px 0px 12px;
 }
 
 #clock:hover {
     color: #74c7ec;
     background: rgba(116, 199, 236, 0.1);
+}
+
+#language {
+    color: #74c7ec;
+    padding: 8px 8px 8px 12px;
+    background-color: rgba(116, 199, 236, 0.1);
+    border-radius: 12px 0px 0px 12px;
 }
 
 #pulseaudio {
@@ -183,6 +202,10 @@ tooltip {
 #custom-power {
     color: #f38ba8;
     font-size: 16px;
+    border-radius: 0px 12px 12px 0px;
+    padding: 0px 8px;
+    margin: 0px;
+    padding: 8px 12px 8px 8px;
 }
 
 #custom-power:hover {
@@ -196,3 +219,4 @@ tooltip {
         opacity: 0.6;
     }
 }
+
