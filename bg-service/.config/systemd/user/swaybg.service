@@ -1,0 +1,12 @@
+[Unit]
+Description=SwayBG Wallpaper
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=swaybg -i /home/s-maleev/.local/share/backgrounds/wallpeper2.jpg -m fill
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
