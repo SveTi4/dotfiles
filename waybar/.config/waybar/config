@@ -9,7 +9,7 @@
     "reload_style_on_change": true,
     "modules-left": ["custom/launcher", "cpu", "memory", "niri/window"],
     "modules-center": ["clock", "niri/workspaces"],
-    "modules-right": ["niri/language", "pulseaudio", "network", "bluetooth", "battery", "tray", "custom/power"],
+    "modules-right": ["niri/language", "pulseaudio", "network", "bluetooth", "battery", "tray", "custom/swaync", "custom/power"],
     
     // Стиль
     "css": "style.css",
@@ -143,6 +143,14 @@
             "notifier": "󰚰",
             "telegram-desktop": "󰁹"
         }
+    },
+
+    "custom/swaync": {
+	"exec": "swaync-client -c",
+	"format": "󰂚 {}",
+	"tooltip": false,
+	"interval": 2,
+	"on-click": "swaync-client -t"
     },
     
     "custom/power": {

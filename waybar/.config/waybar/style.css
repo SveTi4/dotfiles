@@ -66,11 +66,11 @@ tooltip {
 #memory,
 #clock,
 #pulseaudio,
-#pulseaudio-slider,
 #network,
 #bluetooth,
 #battery,
 #tray,
+#custom-swaync,
 #custom-power {
     padding: 4px 6px;
     margin: 4px;
@@ -195,6 +195,15 @@ tooltip {
 }
 
 #tray:hover {
+    color: #74c7ec;
+    background: rgba(116, 199, 236, 0.1);
+}
+
+#custom-swaync {
+    color: #f9e2af;
+}
+
+#custom-swaync:hover {
     color: #74c7ec;
     background: rgba(116, 199, 236, 0.1);
 }
