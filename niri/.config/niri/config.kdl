@@ -77,6 +77,13 @@ animations {
      slowdown 1.2
 }
 
+// Block out mako notifications from screencasts.
+layer-rule {
+    match namespace="^notifications$"
+
+    block-out-from "screencast"
+}
+
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
@@ -84,19 +91,64 @@ window-rule {
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
-    block-out-from "screen-capture"
-
+    block-out-from "screencast"
     // Use this instead if you want them visible on third-party screenshot tools.
     // block-out-from "screencast"
 }
 
 window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"#
+    block-out-from "screencast"
+}
+
+window-rule {
+    match app-id="telegram"
+    match app-id="gcr-prompter"
+    block-out-from "screencast"
+}
+
+window-rule {
+    draw-border-with-background false
     geometry-corner-radius 12
     clip-to-geometry true
+    opacity 0.85
+}
+
+window-rule {
+    match is-focused=true
+    opacity 0.95
+}
+
+window-rule {
+    match is-floating=true
+    opacity 1.0
+}
+
+// Indicate screencasted windows with red colors.
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
 }
 
 binds {
